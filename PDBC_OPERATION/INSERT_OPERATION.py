@@ -5,6 +5,7 @@ cursor = connection.cursor()
 sql = "insert into student values(101,'harsh',97)"
 sql = "insert into student values(102,'vansh',95)"
 sql = "insert into student values(103,'max',89)"
+sql = "insert into student values(104,'raj',91)"
 cursor.execute(sql)
 connection.commit()
 connection.close()

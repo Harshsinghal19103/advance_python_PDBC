@@ -1,7 +1,7 @@
 import pymysql
 
 
-def Test_Delete_01():
+def test_delete_01():
     connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
     cursor = connection.cursor()
     sql = "delete from marksheet where id = 4"
@@ -11,7 +11,7 @@ def Test_Delete_01():
     print('data deleted successfully')
 
 
-def Test_Delete_02():
+def test_delete_02():
     connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
     cursor = connection.cursor()
     sql = "delete from marksheet where id = %s"
@@ -22,7 +22,7 @@ def Test_Delete_02():
     print('data deleted successfully')
 
 
-def Test_Delete_03(id):
+def test_delete_03(id):
     connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
     cursor = connection.cursor()
     sql = "delete from marksheet where id = %s"
@@ -32,6 +32,6 @@ def Test_Delete_03(id):
     connection.close()
     print('data deleted successfully')
 
-Test_Delete_01()
-# Test_Delete_02()
-# Test_Delete_03(3)
+test_delete_01()
+# test_delete_02()
+# test_delete_03(3)

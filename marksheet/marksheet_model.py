@@ -1,12 +1,28 @@
 import pymysql
 
 
-class Marksheet_Model():
+class MarksheetModel:
+
+    def next_pk(self):
+        pk = 0
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        cursor = connection.cursor()
+        sql = "select max(id) from marksheet"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        print(result)
+        for data in result:
+            if data[0] is not None:
+                pk = data[0]
+        connection.commit()
+        connection.close()
+
+        print(pk + 1)
 
 
     def add(self, data):
-        id = data['id']
-        rollNo = data['rollno']
+        id = MarksheetModel.next_pk(self)
+        roll_no = data['roll_no']
         name = data['name']
         physics = data['physics']
         chemistry = data['chemistry']
@@ -14,44 +30,37 @@ class Marksheet_Model():
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
         sql = "insert into marksheet values(%s, %s, %s, %s, %s, %s)"
-        data = (id, rollNo, name, physics, chemistry, maths)
-        cursor.execute(sql,data)
+        data = (id, roll_no, name, physics, chemistry, maths)
+        cursor.execute(sql, data)
         connection.commit()
         connection.close()
         print("Data inserted successfully")
 
-
-
     def update(self, data):
         id = data['id']
-        rollNo = data['rollno']
+        roll_no = data['roll_no']
         name = data['name']
         physics = data['physics']
         chemistry = data['chemistry']
         maths = data['maths']
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
-        sql = "update marksheet set rollno = %s, name = %s, physics = %s, chemistry = %s, maths = %s where id = %s"
-        data = (id, rollNo, name, physics, chemistry, maths)
-        cursor.execute(sql,data)
+        sql = "update marksheet set roll_no = %s, name = %s, physics = %s, chemistry = %s, maths = %s where id = %s"
+        data = (roll_no, name, physics, chemistry, maths, id)
+        cursor.execute(sql, data)
         connection.commit()
         connection.close()
         print("Data updated successfully")
-
-
-
 
     def delete(self, id):
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
         sql = "delete from marksheet where id = %s"
         data = (id)
-        cursor.execute(sql,data)
+        cursor.execute(sql, data)
         connection.commit()
         connection.close()
         print("Data deleted successfully")
-
-
 
     def get(self, id):
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
@@ -66,13 +75,11 @@ class Marksheet_Model():
         connection.close()
         print("Data Selected successfully")
 
-
-
-    def find_by_rollno(self, rollNo):
+    def find_by_roll_no(self, roll_no):
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
-        sql = "select from marksheet where rollNo = %s"
-        data = (rollNo)
+        sql = "select from marksheet where roll_no = %s"
+        data = (roll_no)
         cursor.execute(sql, data)
         result = cursor.fetchall()
         for data in result:
@@ -80,8 +87,3 @@ class Marksheet_Model():
         connection.commit()
         connection.close()
         print("Data Selected successfully")
-
-
-
-
-

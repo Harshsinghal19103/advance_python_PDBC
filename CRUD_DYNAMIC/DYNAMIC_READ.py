@@ -1,7 +1,7 @@
 import pymysql
 
 
-def testRead1():
+def test_read_1():
     connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
     cursor = connection.cursor()
     sql = "select * from marksheet"
@@ -13,20 +13,20 @@ def testRead1():
     connection.close()
 
 
-def testRead2():
+def test_read_2():
     connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
     cursor = connection.cursor()
     sql = "select * from marksheet"
     cursor.execute(sql)
     result = cursor.fetchall()
-    columnName = ("id", "rollNo", "name", "physics", "chemistry", "maths")
+    columnName = ("id", "roll_no", "name", "physics", "chemistry", "maths")
     for x in result:
         print({columnName[i]: x[i] for i, _ in enumerate(x)})
     connection.commit()
     connection.close()
 
 
-def testRead3():
+def test_read_3():
     connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
     cursor = connection.cursor()
 
@@ -47,15 +47,15 @@ def testRead3():
     connection.close()
 
 
-def testRead4(id, rollNo, name, physics, chemistry, maths):
+def test_read_4(id, roll_no, name, physics, chemistry, maths):
     connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
     cursor = connection.cursor()
 
     sql = 'select * from marksheet'
     if id != 0:
         sql += " where id = " + str(id)
-    if rollNo != 0:
-        sql += " where roll_no = " + str(rollNo)
+    if roll_no != 0:
+        sql += " where roll_no = " + str(roll_no)
     if name != '':
         sql += " where name like '" + name + "%'"
     if physics != 0:
@@ -73,9 +73,9 @@ def testRead4(id, rollNo, name, physics, chemistry, maths):
     connection.close()
 
 
-def testRead5(param={}):
+def test_read_5(param={}):
     id = param.get('id', 0)
-    rollNo = param.get('rollNo', 0)
+    roll_no = param.get('roll_no', 0)
     name = param.get('name', '')
     physics = param.get('physics', 0)
     chemistry = param.get('chemistry', 0)
@@ -86,8 +86,8 @@ def testRead5(param={}):
     sql = "select * from marksheet where 1=1"
     if id != 0:
         sql += " and id = " + str(id)
-    if rollNo != 0:
-        sql += " and roll_no = " + str(rollNo)
+    if roll_no != 0:
+        sql += " and roll_no = " + str(roll_no)
     if name != '':
         sql += " and name like '" + name + "%'"
     if physics != 0:
@@ -106,23 +106,23 @@ def testRead5(param={}):
     connection.close()
 
 
-def testRead6(param={}):
+def test_read_6(param={}):
     id = param.get('id', 0)
-    rollNo = param.get('rollNo', 0)
+    roll_no = param.get('roll_no', 0)
     name = param.get('name', '')
     physics = param.get('physics', 0)
     chemistry = param.get('chemistry', 0)
     maths = param.get('maths', 0)
-    pageNo = param.get('pageNo', 0)
-    pageSize = param.get('pageSize', 0)
+    page_no = param.get('page_no', 0)
+    page_size = param.get('page_size', 0)
 
     connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
     cursor = connection.cursor()
     sql = "select * from marksheet where 1=1"
     if id != 0:
         sql += " and id = " + str(id)
-    if rollNo != 0:
-        sql += " and roll_no = " + str(rollNo)
+    if roll_no != 0:
+        sql += " and roll_no = " + str(roll_no)
     if name != '':
         sql += " and name like '" + name + "%'"
     if physics != 0:
@@ -132,9 +132,9 @@ def testRead6(param={}):
     if maths != 0:
         sql += " and maths = " + str(maths)
 
-    if pageSize > 0:
-        pageNo = (pageNo - 1) * pageSize
-        sql += " limit " + str(pageNo) + ", " + str(pageSize)
+    if page_size > 0:
+        pageNo = (page_no - 1) * page_size
+        sql += " limit " + str(page_no) + ", " + str(page_size)
 
     print('sql => ', sql)
     cursor.execute(sql)
@@ -152,10 +152,10 @@ def testRead6(param={}):
 
 param = {}
 param['name'] = 'a'
-param['rollNo'] = 101
-param['pageNo'] = 1
-param['pageSize'] = 5
+param['roll_no'] = 101
+param['page_no'] = 1
+param['page_size'] = 5
 
-# testRead5(param)
+# test_read_5(param)
 
-testRead6(param)
+test_read_6(param)

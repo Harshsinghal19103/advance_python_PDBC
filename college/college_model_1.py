@@ -1,7 +1,7 @@
 import pymysql
 
 
-def Insert(data = {}):
+def insert(data = {}):
     id = data['id']
     name = data['name']
     address = data['address']
@@ -18,7 +18,7 @@ def Insert(data = {}):
     print('data inserted successfully')
 
 
-def Update(data={}):
+def update(data={}):
     id = data['id']
     name = data['name']
     address = data['address']
@@ -60,15 +60,15 @@ def get(id):
     print("Data Selected successfully")
 
 
-def Read(data={}):
+def read(data={}):
     id = data.get('id', 0)
     name = data.get('name', 0)
     address = data.get('address', '')
     state = data.get('state', 0)
     city = data.get('city', 0)
     phone_number = data.get('phone_number', 0)
-    pageNo = data.get('pageNo', 0)
-    pageSize = data.get('pageSize', 0)
+    page_no = data.get('page_no', 0)
+    page_size = data.get('page_size', 0)
 
     connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
     cursor = connection.cursor()
@@ -86,9 +86,9 @@ def Read(data={}):
     if phone_number != 0:
         sql += " and phone_number = " + str(phone_number)
 
-    if pageSize > 0:
-        pageNo = (pageNo - 1) * pageSize
-        sql += " limit " + str(pageNo) + ", " + str(pageSize)
+    if page_size > 0:
+        pageNo = (page_no - 1) * page_size
+        sql += " limit " + str(pageNo) + ", " + str(page_size)
 
     print('sql => ', sql)
     cursor.execute(sql)
@@ -112,6 +112,6 @@ data = {}
 
 # get(id = 1)
 # delete(id = 2)
-data['pageNo'] = 1
-data['pageSize'] = 5
-Read(data)
+data['page_no'] = 1
+data['page_size'] = 5
+read(data)

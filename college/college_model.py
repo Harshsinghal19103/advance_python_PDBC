@@ -1,10 +1,26 @@
 import pymysql
 
-class College_Model():
+class CollegeModel:
+
+    def next_pk(self):
+        pk = 0
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        cursor = connection.cursor()
+        sql = "select max(id) from marksheet"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        print(result)
+        for data in result:
+            if data[0] is not None:
+                pk = data[0]
+        connection.commit()
+        connection.close()
+
+        print(pk + 1)
 
 
-    def Insert(self, data):
-        id = data['id']
+    def insert(self, data):
+        id = CollegeModel.next_pk(self)
         name = data['name']
         address = data['address']
         state = data['state']
@@ -19,7 +35,8 @@ class College_Model():
         connection.close()
         print('data inserted successfully')
 
-    def Update(self,data):
+
+    def update(self,data):
         id = data['id']
         name = data['name']
         address = data['address']
@@ -35,6 +52,7 @@ class College_Model():
         connection.close()
         print("college updated successfully")
 
+
     def delete(self,id):
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
@@ -44,6 +62,7 @@ class College_Model():
         connection.commit()
         connection.close()
         print("Data deleted successfully")
+
 
     def get(self,id):
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
@@ -58,7 +77,8 @@ class College_Model():
         connection.close()
         print("Data Selected successfully")
 
-    def Read(self,data):
+
+    def read(self,data):
         id = data.get('id', 0)
         name = data.get('name', 0)
         address = data.get('address', '')

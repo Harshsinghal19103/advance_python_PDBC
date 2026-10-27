@@ -1,5 +1,6 @@
 from role_model import RoleModel
 
+
 def test_add():
     data = {}
     # data['id'] =
@@ -8,7 +9,9 @@ def test_add():
     role = RoleModel()
     role.insert(data)
 
+
 test_add()
+
 
 def test_update():
     data = {}
@@ -18,11 +21,13 @@ def test_update():
     role = RoleModel()
     role.update(data)
 
+
 # test_update()
 
 def test_delete():
-    role= RoleModel()
+    role = RoleModel()
     role.delete(1)
+
 
 # test_delete()
 
@@ -35,5 +40,3 @@ def test_get():
 def test_find_by_roll_no():
     role = RoleModel()
     role.find_by_roll_no(102)
-
-

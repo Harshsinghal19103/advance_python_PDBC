@@ -1,7 +1,7 @@
 import pymysql
 
 
-def insert(data = {}):
+def insert(data={}):
     id = data['id']
     name = data['name']
     address = data['address']

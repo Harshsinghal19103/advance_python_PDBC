@@ -1,7 +1,7 @@
 import pymysql
 
 
-def insert(data = {}):
+def insert(data={}):
     id = data['id']
     name = data['name']
     description = data['description']
@@ -57,7 +57,7 @@ def get(id):
 def read(data={}):
     id = data.get('id', 0)
     name = data.get('name', 0)
-    description = data.get('description',)
+    description = data.get('description', )
     page_no = data.get('page_no', 0)
     page_size = data.get('page_size', 0)
 
@@ -70,7 +70,6 @@ def read(data={}):
         sql += " and name = " + str(name)
     if description != '':
         sql += " and description like '" + description + "%'"
-
 
     if page_size > 0:
         pageNo = (page_no - 1) * page_size

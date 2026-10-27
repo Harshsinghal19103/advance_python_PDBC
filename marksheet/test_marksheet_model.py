@@ -1,5 +1,6 @@
 from marksheet_model import MarksheetModel
 
+
 def test_add():
     data = {}
     # data['id'] = 6
@@ -12,7 +13,8 @@ def test_add():
     marksheet = MarksheetModel()
     marksheet.add(data)
 
-test_add()
+
+# test_add()
 
 
 def test_update():
@@ -24,14 +26,17 @@ def test_update():
     data['chemistry'] = 78
     data['maths'] = 85
 
-    marksheet= MarksheetModel()
+    marksheet = MarksheetModel()
     marksheet.update(data)
 
-# test_update()
+
+test_update()
+
 
 def test_delete():
-    marksheet= MarksheetModel()
+    marksheet = MarksheetModel()
     marksheet.delete(1)
+
 
 # test_delete()
 
@@ -44,5 +49,3 @@ def test_get():
 def test_find_by_roll_no():
     marksheet = MarksheetModel()
     marksheet.find_by_roll_no(102)
-
-

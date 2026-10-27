@@ -1,5 +1,6 @@
 import pymysql
 
+
 class RoleModel:
 
     def next_pk(self):
@@ -18,7 +19,7 @@ class RoleModel:
 
         return pk + 1
 
-    def insert(self,data):
+    def insert(self, data):
         id = RoleModel.next_pk(self)
         name = data['name']
         description = data['description']
@@ -31,7 +32,7 @@ class RoleModel:
         connection.close()
         print('data inserted successfully')
 
-    def update(self,data):
+    def update(self, data):
         id = data['id']
         name = data['name']
         description = data['description']
@@ -44,7 +45,7 @@ class RoleModel:
         connection.close()
         print("college updated successfully")
 
-    def delete(self,id):
+    def delete(self, id):
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
         sql = "delete from role where id = %s"
@@ -54,7 +55,7 @@ class RoleModel:
         connection.close()
         print("Data deleted successfully")
 
-    def get(self,id):
+    def get(self, id):
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
         sql = "select * from role where id = %s"
@@ -67,7 +68,7 @@ class RoleModel:
         connection.close()
         print("Data Selected successfully")
 
-    def read(self,data):
+    def read(self, data):
         id = data.get('id', 0)
         name = data.get('name', 0)
         description = data.get('description', )
@@ -85,8 +86,8 @@ class RoleModel:
             sql += " and description like '" + description + "%'"
 
         if page_size > 0:
-            pageNo = (page_no - 1) * page_size
-            sql += " limit " + str(pageNo) + ", " + str(page_size)
+            page_no = (page_no - 1) * page_size
+            sql += " limit " + str(page_no) + ", " + str(page_size)
 
         print('sql => ', sql)
         cursor.execute(sql)

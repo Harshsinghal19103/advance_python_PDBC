@@ -2,17 +2,17 @@ from marksheet_model import MarksheetModel
 
 def test_add():
     data = {}
-    data['id'] = 6
-    data['roll_no'] = 106
-    data['name'] = 'pranjay'
-    data['physics'] = 89
-    data['chemistry'] = 99
-    data['maths'] = 90
+    # data['id'] = 6
+    data['roll_no'] = 202
+    data['name'] = 'prerna'
+    data['physics'] = 76
+    data['chemistry'] = 77
+    data['maths'] = 81
 
     marksheet = MarksheetModel()
     marksheet.add(data)
 
-# test_add()
+test_add()
 
 
 def test_update():
@@ -27,7 +27,7 @@ def test_update():
     marksheet= MarksheetModel()
     marksheet.update(data)
 
-test_update()
+# test_update()
 
 def test_delete():
     marksheet= MarksheetModel()

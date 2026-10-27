@@ -16,7 +16,7 @@ class CollegeModel:
         connection.commit()
         connection.close()
 
-        print(pk + 1)
+        return pk + 1
 
 
     def insert(self, data):

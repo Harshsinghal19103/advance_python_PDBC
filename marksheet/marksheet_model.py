@@ -17,8 +17,7 @@ class MarksheetModel:
         connection.commit()
         connection.close()
 
-        print(pk + 1)
-
+        return pk + 1
 
     def add(self, data):
         id = MarksheetModel.next_pk(self)

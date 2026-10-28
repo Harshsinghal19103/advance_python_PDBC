@@ -1,4 +1,4 @@
-from college_model_with_return import CollegeModel
+from college_model import CollegeModel
 
 
 def test_add():
@@ -11,10 +11,7 @@ def test_add():
     data['phone_number'] = '91564616540'
 
     college = CollegeModel()
-    college.insert(data)
-
-
-# test_add()
+    college.add(data)
 
 
 def test_update():
@@ -28,9 +25,6 @@ def test_update():
 
     college = CollegeModel()
     college.update(data)
-
-
-test_update()
 
 
 def test_get():
@@ -59,5 +53,5 @@ def test_search():
 # test_update()
 # test_read()
 # test_get()
-# test_find_by_roll_no()
+
 test_search()

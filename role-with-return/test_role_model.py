@@ -1,4 +1,4 @@
-from role_model_with_return import RoleModel
+from role_model import RoleModel
 
 
 def test_add():
@@ -7,7 +7,7 @@ def test_add():
     data['name'] = 'Accountant'
     data['description'] = 'Manages financial records'
     role = RoleModel()
-    role.insert(data)
+    role.add(data)
 
 
 # test_add()
@@ -46,7 +46,7 @@ def test_search():
     # model.search(data)
     list = model.search(data)
     for data in list:
-        print(data['id'], '\t', data['name'], '\t', data['description'], )
+        print(data['id'], '\t', data['name'], '\t',  data['description'], )
 
 
 # test_add()

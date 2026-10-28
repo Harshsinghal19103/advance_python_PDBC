@@ -69,11 +69,11 @@ class MarksheetModel:
         cursor.execute(sql, data)
         result = cursor.fetchall()
         columnName = ("id", "roll_no", "name", "physics", "chemistry", "maths")
-        res = []
+        list = []
         for x in result:
-            res.append({columnName[i]: x[i] for i, _ in enumerate(x)})
+            list.append({columnName[i]: x[i] for i, _ in enumerate(x)})
         connection.close()
-        return res
+        return list
 
     def find_by_roll_no(self, roll_no):
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
@@ -83,11 +83,11 @@ class MarksheetModel:
         cursor.execute(sql, data)
         result = cursor.fetchall()
         columnName = ("id", "roll_no", "name", "physics", "chemistry", "maths")
-        res = []
+        list = []
         for x in result:
-            res.append({columnName[i]: x[i] for i, _ in enumerate(x)})
+            list.append({columnName[i]: x[i] for i, _ in enumerate(x)})
         connection.close()
-        return res
+        return list
 
     def search(self, data):
         name = data.get('name', '')
@@ -98,7 +98,7 @@ class MarksheetModel:
         cursor = connection.cursor()
         sql = "select * from marksheet where 1=1"
         if name != '':
-            sql += " and name = '" + name + "'"
+            sql += " and name like '" + name + "%'"
         if roll_no != 0:
             sql += " and roll_no = " + str(roll_no)
         if (page_size > 0):
@@ -107,10 +107,10 @@ class MarksheetModel:
         print('sql => ', sql)
         cursor.execute(sql)
         result = cursor.fetchall()
-        columnName = ("id", "roll_no", "name", "physics", "chemistry", "maths")
-        res = []
+        column_name = ("id", "roll_no", "name", "physics", "chemistry", "maths")
+        list = []
         for x in result:
-            print({columnName[i]: x[i] for i, _ in enumerate(x)})
-            # res.append({columnName[i]: x[i] for i, _ in enumerate(x)})
+            # print({columnName[i]: x[i] for i, _ in enumerate(x)})
+            list.append({column_name[i]: x[i] for i, _ in enumerate(x)})
         connection.close()
-        return res
+        return list

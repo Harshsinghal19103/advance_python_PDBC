@@ -1,13 +1,13 @@
 import pymysql
 
 
-class CollegeModel:
+class RoleModel:
 
     def next_pk(self):
         pk = 0
         connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
         cursor = connection.cursor()
-        sql = "select max(id) from marksheet"
+        sql = "select max(id) from role"
         cursor.execute(sql)
         result = cursor.fetchall()
         print(result)
@@ -19,17 +19,14 @@ class CollegeModel:
 
         return pk + 1
 
-    def insert(self, data):
-        id = CollegeModel.next_pk(self)
+    def add(self, data):
+        id = RoleModel.next_pk(self)
         name = data['name']
-        address = data['address']
-        state = data['state']
-        city = data['city']
-        phone_number = data['phone_number']
+        description = data['description']
         connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
         cursor = connection.cursor()
-        sql = "insert into college values(%s, %s, %s, %s, %s, %s)"
-        data = (id, name, address, state, city, phone_number)
+        sql = "insert into role values(%s, %s, %s)"
+        data = (id, name, description)
         cursor.execute(sql, data)
         connection.commit()
         connection.close()
@@ -38,14 +35,11 @@ class CollegeModel:
     def update(self, data):
         id = data['id']
         name = data['name']
-        address = data['address']
-        state = data['state']
-        city = data['city']
-        phone_number = data['phone_number']
+        description = data['description']
         connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db="advance_python")
         cursor = connection.cursor()
-        sql = "update college set name = %s, address = %s, state = %s,city = %s,phone_number = %s where id = %s"
-        data = (name, address, state, city, phone_number, id)
+        sql = "update role set name = %s, description = %s where id = %s"
+        data = (name, description, id)
         cursor.execute(sql, data)
         connection.commit()
         connection.close()
@@ -54,7 +48,7 @@ class CollegeModel:
     def delete(self, id):
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
-        sql = "delete from college where id = %s"
+        sql = "delete from role where id = %s"
         data = (id)
         cursor.execute(sql, data)
         connection.commit()
@@ -64,43 +58,49 @@ class CollegeModel:
     def get(self, id):
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
-        sql = "select * from college where id = %s"
+        sql = "select * from role where id = %s"
         data = (id)
         cursor.execute(sql, data)
         result = cursor.fetchall()
-        columnName = ("id", "name", "address", "state", "city", "phone_number")
-        res = []
+        columnName = ("id", "name", "description")
+        list = []
         for x in result:
             print({columnName[i]: x[i] for i, _ in enumerate(x)})
-            # res.append({columnName[i]: x[i] for i, _ in enumerate(x)})
+            list.append({columnName[i]: x[i] for i, _ in enumerate(x)})
         connection.close()
-        return res
+        return list
+
+    def find_by_name(self, name):
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        cursor = connection.cursor()
+        sql = "select * from role where name = %s"
+        data = (name)
+        cursor.execute(sql, data)
+        result = cursor.fetchall()
+        columnName = ("id", "name", "description")
+        list = []
+        for x in result:
+            print({columnName[i]: x[i] for i, _ in enumerate(x)})
+            list.append({columnName[i]: x[i] for i, _ in enumerate(x)})
+        connection.close()
+        return list
 
     def search(self, data):
         id = data.get('id', 0)
-        name = data.get('name', 0)
-        address = data.get('address', '')
-        state = data.get('state', 0)
-        city = data.get('city', 0)
-        phone_number = data.get('phone_number', 0)
+        name = data.get('name', '')
+        description = data.get('description', '')
         page_no = data.get('page_no', 0)
         page_size = data.get('page_size', 0)
 
         connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
         cursor = connection.cursor()
-        sql = "select * from college where 1=1"
+        sql = "select * from role where 1=1"
         if id != 0:
             sql += " and id = " + str(id)
-        if name != 0:
-            sql += " and name = " + str(name)
-        if address != '':
-            sql += " and address like '" + address + "%'"
-        if state != 0:
-            sql += " and state = " + str(state)
-        if city != 0:
-            sql += " and city = " + str(city)
-        if phone_number != 0:
-            sql += " and phone_number = " + str(phone_number)
+        if name != '':
+            sql += " and name like '" + name + "%'"
+        if description != '':
+            sql += " and description like '" + description + "%'"
 
         if page_size > 0:
             page_no = (page_no - 1) * page_size
@@ -109,10 +109,10 @@ class CollegeModel:
         print('sql => ', sql)
         cursor.execute(sql)
         result = cursor.fetchall()
-        columnName = ("id", "name", "address", "state", "city", "phone_number")
-        res = []
+        columnName = ("id", "name", "description")
+        list = []
         for x in result:
-            print({columnName[i]: x[i] for i, _ in enumerate(x)})
-            # res.append({columnName[i]: x[i] for i, _ in enumerate(x)})
+            # print({columnName[i]: x[i] for i, _ in enumerate(x)})
+            list.append({columnName[i]: x[i] for i, _ in enumerate(x)})
         connection.close()
-        return res
+        return list

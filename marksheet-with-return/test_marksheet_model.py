@@ -1,4 +1,4 @@
-from marksheet_model_with_return import MarksheetModel
+from marksheet_model import MarksheetModel
 
 
 def test_add():

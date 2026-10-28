@@ -86,3 +86,26 @@ class MarksheetModel:
         connection.commit()
         connection.close()
         print("Data Selected successfully")
+
+    def search(self, data):
+        name = data.get('name', '')
+        roll_no = data.get('roll_no', 0)
+        page_no = data.get('page_no', 0)
+        page_size = data.get('page_size', 0)
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        cursor = connection.cursor()
+        sql = "select * from marksheet where 1=1"
+        if name != '':
+            sql += " and name = '" + name + "'"
+        if roll_no != 0:
+            sql += " and roll_no = " + str(roll_no)
+        if (page_size > 0):
+            page_no = (page_no - 1) * page_size
+            sql += " limit " + str(page_no) + ", " + str(page_size)
+        print('sql => ', sql)
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        for data in result:
+            print(data[0], '\t', data[1], '\t', data[2], '\t', data[3], '\t', data[4], '\t', data[5])
+        connection.commit()
+        connection.close()

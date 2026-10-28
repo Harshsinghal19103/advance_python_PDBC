@@ -30,7 +30,7 @@ def test_update():
     marksheet.update(data)
 
 
-test_update()
+# test_update()
 
 
 def test_delete():
@@ -49,3 +49,12 @@ def test_get():
 def test_find_by_roll_no():
     marksheet = MarksheetModel()
     marksheet.find_by_roll_no(102)
+
+def testSearch():
+    params = {}
+    # params['name'] = 'abc'
+    # params['roll_no'] = 101
+    params['page_no'] = 1
+    params['page_size'] = 0
+    model = MarksheetModel()
+    model.search(params)

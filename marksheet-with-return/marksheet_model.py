@@ -101,6 +101,12 @@ class MarksheetModel:
             sql += " and name like '" + name + "%'"
         if roll_no != 0:
             sql += " and roll_no = " + str(roll_no)
+        if physics != 0:
+            sql += " and physics = " + str(physics)
+        if roll_no != 0:
+            sql += " and roll_no = " + str(chemistry)
+        if roll_no != 0:
+            sql += " and roll_no = " + str(roll_no)
         if (page_size > 0):
             page_no = (page_no - 1) * page_size
             sql += " limit " + str(page_no) + ", " + str(page_size)

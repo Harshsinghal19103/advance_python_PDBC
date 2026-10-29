@@ -5,26 +5,26 @@ def test_add():
     data = {}
     # data['id'] = 2
     data['first_name'] = 'rahul'
-    data['last_name'] = 'lu'
-    data['login_id'] = 'prerna03'
-    data['password'] = 'prerna@#03'
-    data['dob'] = datetime.date(2005,10,31)
-    data['address'] = 'rani bagh'
+    data['last_name'] = 'kumar'
+    data['login_id'] = 'kumar18'
+    data['password'] = 'kumar@#18'
+    data['dob'] = datetime.date(2000,12,20)
+    data['address'] = 'lal bagh'
 
     user = UserModel()
     user.add(data)
 
-test_add()
+# test_add()
 
 def test_update():
     data = {}
-    data['id'] = 2
-    data['first_name'] = 'Sage university Bhopal'
-    data['last_name'] = 'sahara bypass'
-    data['login_id'] = 'Madhya Pradesh'
-    data['password'] = 'indore'
-    data['dob'] = '91564616540'
-    data['address'] = '91564616540'
+    data['id'] = 3
+    data['first_name'] = 'pranjay'
+    data['last_name'] = 'jaiswal'
+    data['login_id'] = 'pranjay02'
+    data['password'] = 'pranjay@#02'
+    data['dob'] = datetime.date(1998,7,11)
+    data['address'] = 'limbodi'
 
     user = UserModel()
     user.update(data)
@@ -71,4 +71,4 @@ def test_search():
 # test_read()
 # test_get()
 # test_delete()
-# test_search()
+test_search()

@@ -27,6 +27,7 @@ class UserModel:
         password = data['password']
         dob = data['dob']
         address = data['address']
+
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
         sql = "insert into user values(%s, %s, %s, %s, %s, %s, %s)"
@@ -44,6 +45,7 @@ class UserModel:
         password = data['password']
         dob = data['dob']
         address = data['address']
+
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
         sql = "update user set first_name = %s, last_name = %s, login_id = %s, password = %s, dob = %s, address = %s where id = %s"
@@ -101,9 +103,10 @@ class UserModel:
         address = data.get('address', '')
         page_no = data.get('page_no', 0)
         page_size = data.get('page_size', 0)
+
         connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
         cursor = connection.cursor()
-        sql = "select * from marksheet where 1=1"
+        sql = "select * from user where 1=1"
         if id != 0:
             sql += " and id = " + str(id)
         if first_name != '':

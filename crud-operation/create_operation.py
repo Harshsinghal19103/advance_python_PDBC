@@ -27,9 +27,10 @@ import pymysql
 # connection.close()
 # print("created successfully")
 
+
 connection = pymysql.Connection(host = "localhost",port = 3306,user = "root",password ="root",db = "advance_python")
 cursor = connection.cursor()
-sql = "create table user(id int primary key, first_name varchar(50), last_name varchar(50), login_id varchar(50), password varchar(50), dob date, address varchar(50) )"
+sql = "create table hospital (id int primary key, hospital_name varchar(100), city varchar(50), phone varchar(15), total_beds int);"
 cursor.execute(sql)
 connection.commit()
 connection.close()

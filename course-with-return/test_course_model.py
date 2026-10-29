@@ -3,34 +3,47 @@ from course_model import CourseModel
 
 def test_add():
     data = {}
+    # data['id'] = 'C'
     data['name'] = 'C'
     data['description'] = 'C programming fundamental'
     data['duration'] = '6 month'
     course = CourseModel()
-    course.add(data)
+
+    try:
+        course.add(data)
+    except Exception as e:
+        print(e)
 
 
-# test_add()
+
+test_add()
 
 def test_update():
     data = {}
+    data['id'] = '3'
     data['name'] = 'Python'
     data['description'] = 'Python programming advance'
-    data['duration'] = ''
+    data['duration'] = '7 month'
     course = CourseModel()
     course.update(data)
 
 
 def test_delete():
     course = CourseModel()
-    course.delete('C')
+    course.delete(5)
 
 
 def test_get():
     course = CourseModel()
-    list = course.get('AWS')
+    list = course.get(2)
     for data in list:
-        print(data['name'], '\t', data['description'], '\t', data['duration'], )
+        print(data['id'], '\t', data['name'], '\t', data['description'], '\t', data['duration'], )
+
+def test_find_by_name():
+    course = CourseModel()
+    list = course.find_by_name('AWS')
+    for data in list:
+        print(data['id'], '\t', data['name'], '\t', data['description'], '\t', data['duration'], )
 
 
 def test_search():
@@ -42,12 +55,13 @@ def test_search():
     # model.search(data)
     list = model.search(data)
     for data in list:
-        print(data['name'], '\t', data['description'], '\t', data['duration'], )
+        print(data['id'], '\t', data['name'], '\t', data['description'], '\t', data['duration'], )
 
 
 # test_add()
 # test_update()
 # test_read()
-test_get()
+# test_get()
+# test_find_by_name()
 # test_delete()
 # test_search()

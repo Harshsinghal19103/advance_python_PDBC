@@ -7,10 +7,14 @@ def test_add():
     data['name'] = 'Accountant'
     data['description'] = 'Manages financial records'
     role = RoleModel()
-    role.add(data)
+
+    try:
+        role.add(data)
+    except Exception as e:
+        print(e)
 
 
-# test_add()
+test_add()
 
 def test_update():
     data = {}
@@ -52,6 +56,6 @@ def test_search():
 # test_add()
 # test_update()
 # test_read()
-test_get()
+# test_get()
 
 # test_search()

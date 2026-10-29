@@ -28,6 +28,11 @@ class UserModel:
         dob = data['dob']
         address = data['address']
 
+        user_exist = self.find_by_login_id(login_id)
+
+        if len(user_exist) > 0:
+            raise Exception("user name already exist")
+
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
         sql = "insert into user values(%s, %s, %s, %s, %s, %s, %s)"

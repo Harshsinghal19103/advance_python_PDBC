@@ -11,8 +11,14 @@ def test_add():
     data['phone_number'] = '91564616540'
 
     college = CollegeModel()
-    college.add(data)
 
+
+    try:
+        college.add(data)
+    except Exception as e:
+        print(e)
+
+test_add()
 
 def test_update():
     data = {}
@@ -49,9 +55,9 @@ def test_search():
               data['phone_number'], )
 
 
-# test_add()
+
 # test_update()
 # test_read()
 # test_get()
 
-test_search()
+# test_search()

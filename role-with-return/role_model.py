@@ -23,6 +23,12 @@ class RoleModel:
         id = RoleModel.next_pk(self)
         name = data['name']
         description = data['description']
+
+        role_exist = self.find_by_name(name)
+
+        if len(role_exist) > 0:
+            raise Exception("role name already exist")
+
         connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
         cursor = connection.cursor()
         sql = "insert into role values(%s, %s, %s)"

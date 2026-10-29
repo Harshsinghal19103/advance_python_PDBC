@@ -11,8 +11,12 @@ def test_add():
     data['maths'] = 79
 
     model = MarksheetModel()
-    model.add(data)
+    try:
+        model.add(data)
+    except Exception as e:
+        print(e)
 
+test_add()
 
 def test_update():
     data = {}
@@ -65,9 +69,9 @@ def test_search():
               '\t', data['maths'], )
 
 
-# test_add()
+
 # test_update()
 # test_read()
 # test_get()
 # test_find_by_roll_no()
-test_search()
+# test_search()

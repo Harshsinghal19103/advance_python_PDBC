@@ -26,6 +26,13 @@ class CollegeModel:
         state = data['state']
         city = data['city']
         phone_number = data['phone_number']
+
+        college_exist = self.find_by_name(name)
+
+        if len(college_exist) > 0:
+            raise Exception("college name already exist")
+
+
         connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
         cursor = connection.cursor()
         sql = "insert into college values(%s, %s, %s, %s, %s, %s)"

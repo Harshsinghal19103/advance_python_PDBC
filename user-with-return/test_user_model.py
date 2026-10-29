@@ -12,9 +12,12 @@ def test_add():
     data['address'] = 'lal bagh'
 
     user = UserModel()
-    user.add(data)
+    try:
+        user.add(data)
+    except Exception as e:
+        print(e)
 
-# test_add()
+test_add()
 
 def test_update():
     data = {}
@@ -71,4 +74,4 @@ def test_search():
 # test_read()
 # test_get()
 # test_delete()
-test_search()
+# test_search()

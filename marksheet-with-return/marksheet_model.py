@@ -26,6 +26,13 @@ class MarksheetModel:
         physics = data['physics']
         chemistry = data['chemistry']
         maths = data['maths']
+
+        marksheet_exist = self.find_by_roll_no(roll_no)
+
+        if len(marksheet_exist) > 0:
+            raise Exception("roll no already exist")
+
+
         connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
         cursor = connection.cursor()
         sql = "insert into marksheet values(%s, %s, %s, %s, %s, %s)"
@@ -92,6 +99,9 @@ class MarksheetModel:
     def search(self, data):
         name = data.get('name', '')
         roll_no = data.get('roll_no', 0)
+        physics = data.get('physics', '')
+        chemistry = data.get('chemistry', '')
+        maths = data.get('maths', '')
         page_no = data.get('page_no', 0)
         page_size = data.get('page_size', 0)
         connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
@@ -103,10 +113,10 @@ class MarksheetModel:
             sql += " and roll_no = " + str(roll_no)
         if physics != 0:
             sql += " and physics = " + str(physics)
-        if roll_no != 0:
-            sql += " and roll_no = " + str(chemistry)
-        if roll_no != 0:
-            sql += " and roll_no = " + str(roll_no)
+        if chemistry != 0:
+            sql += " and chemistry = " + str(chemistry)
+        if maths != 0:
+            sql += " and maths = " + str(maths)
         if (page_size > 0):
             page_no = (page_no - 1) * page_size
             sql += " limit " + str(page_no) + ", " + str(page_size)

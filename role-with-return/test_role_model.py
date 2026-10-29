@@ -52,6 +52,6 @@ def test_search():
 # test_add()
 # test_update()
 # test_read()
-# test_get()
+test_get()
 
-test_search()
+# test_search()

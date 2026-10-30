@@ -36,9 +36,18 @@ import pymysql
 # connection.close()
 # print("created successfully")
 
+# connection = pymysql.Connection(host = "localhost",port = 3306,user = "root",password ="root",db = "advance_python")
+# cursor = connection.cursor()
+# sql = "create table course(id int primary key, name varchar(50) unique, description varchar(100), duration varchar(100) )"
+# cursor.execute(sql)
+# connection.commit()
+# connection.close()
+# print("created successfully")
+
+
 connection = pymysql.Connection(host = "localhost",port = 3306,user = "root",password ="root",db = "advance_python")
 cursor = connection.cursor()
-sql = "create table course(id int primary key, name varchar(50) unique, description varchar(100), duration varchar(100) )"
+sql = "create table subject(id int primary key, name varchar(20), description varchar(50), course_id int )"
 cursor.execute(sql)
 connection.commit()
 connection.close()

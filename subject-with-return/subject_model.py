@@ -14,22 +14,21 @@ class SubjectModel:
         for data in result:
             if data[0] is not None:
                 pk = data[0]
-        connection.commit()
         connection.close()
 
         return pk + 1
 
     def add(self, data):
-        id = SubjectModel.next_pk(self)
-        # id = data['id']
+        # id = SubjectModel.next_pk(self)
+        id = data['id']
         name = data['name']
         description = data['description']
         course_id = data['course_id']
 
-        # course_exist = self.find_by_name(name)
-        #
-        # if len(course_exist) > 0:
-        #     raise Exception("course name already exist")
+        subject_exist = self.find_by_name(name)
+
+        if len(subject_exist) > 0:
+            raise Exception("subject name already exist")
 
         connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
         cursor = connection.cursor()
@@ -45,13 +44,6 @@ class SubjectModel:
         name = data['name']
         description = data['description']
         course_id = data['course_id']
-
-        subject_exist = self.find_by_name(name)
-
-        if len(subject_exist) > 0:
-            raise Exception("subject name already exist")
-
-
         connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db="advance_python")
         cursor = connection.cursor()
         sql = "update subject set name = %s, description = %s, course_id = %s where id = %s"

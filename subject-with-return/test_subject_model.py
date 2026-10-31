@@ -3,10 +3,10 @@ from subject_model import SubjectModel
 
 def test_add():
     data = {}
-    # data['id'] = 3
-    data['name'] = 'core java'
-    data['description'] = 'basics, oop, file-handling'
-    data['course_id'] = 2
+    data['id'] = 3
+    data['name'] = 'AWS'
+    data['description'] = 'Amazon Web Services'
+    data['course_id'] = 3
     subject = SubjectModel()
     # subject.add(data)
     try:

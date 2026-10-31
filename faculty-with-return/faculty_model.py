@@ -5,7 +5,7 @@ class FacultyModel:
 
     def next_pk(self):
         pk = 0
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database='advance_python')
         cursor = connection.cursor()
         sql = "select max(id) from faculty"
         cursor.execute(sql)
@@ -33,12 +33,12 @@ class FacultyModel:
         course_id = data['course_id']
         subject_id = data['subject_id']
 
-        # user_exist = self.find_by_login_id(login_id)
-        #
-        # if len(user_exist) > 0:
-        #     raise Exception("user name already exist")
+        faculty_exist = self.find_by_email(email)
 
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        if len(faculty_exist) > 0:
+            raise Exception("faculty name already exist")
+
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "insert into faculty values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         data = (id, first_name, last_name, email, password, address, gender, dob, college_id, course_id, subject_id)
@@ -59,7 +59,7 @@ class FacultyModel:
         college_id = data['college_id']
         course_id = data['course_id']
         subject_id = data['subject_id']
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "update faculty set first_name = %s, last_name = %s, email = %s, password = %s, address = %s, gender = %s, dob = %s, college_id =%s, course_id = %s, subject_id = %s where id = %s"
         data = (first_name, last_name, email, password, address, gender, dob, college_id, course_id, subject_id, id)
@@ -69,7 +69,7 @@ class FacultyModel:
         print("Data updated successfully")
 
     def delete(self, id):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "delete from faculty where id = %s"
         data = (id)
@@ -79,13 +79,15 @@ class FacultyModel:
         print("Data deleted successfully")
 
     def get(self, id):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "select * from faculty where id = %s"
         data = (id)
         cursor.execute(sql, data)
         result = cursor.fetchall()
-        column_name = ('id', 'first_name', 'last_name', 'email', 'password', 'address', 'gender', 'dob', 'college_id', 'course_id', 'subject_id')
+        column_name = (
+        'id', 'first_name', 'last_name', 'email', 'password', 'address', 'gender', 'dob', 'college_id', 'course_id',
+        'subject_id')
         list = []
         for x in result:
             list.append({column_name[i]: x[i] for i, _ in enumerate(x)})
@@ -93,13 +95,15 @@ class FacultyModel:
         return list
 
     def find_by_email(self, email):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "select * from faculty where email = %s"
         data = (email)
         cursor.execute(sql, data)
         result = cursor.fetchall()
-        column_name = ('id', 'first_name', 'last_name', 'email', 'password', 'address', 'gender', 'dob', 'college_id', 'course_id', 'subject_id')
+        column_name = (
+        'id', 'first_name', 'last_name', 'email', 'password', 'address', 'gender', 'dob', 'college_id', 'course_id',
+        'subject_id')
         list = []
         for x in result:
             list.append({column_name[i]: x[i] for i, _ in enumerate(x)})
@@ -121,7 +125,7 @@ class FacultyModel:
         page_no = data.get('page_no', 0)
         page_size = data.get('page_size', 0)
 
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database='advance_python')
         cursor = connection.cursor()
         sql = "select * from faculty where 1=1"
         if id != 0:
@@ -153,7 +157,9 @@ class FacultyModel:
         print('sql => ', sql)
         cursor.execute(sql)
         result = cursor.fetchall()
-        column_name = ('id', 'first_name', 'last_name', 'email', 'password', 'address', 'gender', 'dob', 'college_id', 'course_id', 'subject_id')
+        column_name = (
+        'id', 'first_name', 'last_name', 'email', 'password', 'address', 'gender', 'dob', 'college_id', 'course_id',
+        'subject_id')
         list = []
         for x in result:
             # print({columnName[i]: x[i] for i, _ in enumerate(x)})

@@ -5,7 +5,7 @@ class UserModel:
 
     def next_pk(self):
         pk = 0
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database='advance_python')
         cursor = connection.cursor()
         sql = "select max(id) from user"
         cursor.execute(sql)
@@ -33,7 +33,7 @@ class UserModel:
         if len(user_exist) > 0:
             raise Exception("user name already exist")
 
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "insert into user values(%s, %s, %s, %s, %s, %s, %s)"
         data = (id, first_name, last_name, login_id, password, dob, address)
@@ -51,7 +51,7 @@ class UserModel:
         dob = data['dob']
         address = data['address']
 
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "update user set first_name = %s, last_name = %s, login_id = %s, password = %s, dob = %s, address = %s where id = %s"
         data = (first_name, last_name, login_id, password, dob, address, id)
@@ -61,7 +61,7 @@ class UserModel:
         print("Data updated successfully")
 
     def delete(self, id):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "delete from user where id = %s"
         data = (id)
@@ -71,7 +71,7 @@ class UserModel:
         print("Data deleted successfully")
 
     def get(self, id):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "select * from user where id = %s"
         data = (id)
@@ -85,7 +85,7 @@ class UserModel:
         return list
 
     def find_by_login_id(self, login_id):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "select * from user where login_id = %s"
         data = (login_id)
@@ -109,7 +109,7 @@ class UserModel:
         page_no = data.get('page_no', 0)
         page_size = data.get('page_size', 0)
 
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database='advance_python')
         cursor = connection.cursor()
         sql = "select * from user where 1=1"
         if id != 0:

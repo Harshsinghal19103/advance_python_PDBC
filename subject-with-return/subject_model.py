@@ -5,7 +5,7 @@ class SubjectModel:
 
     def next_pk(self):
         pk = 0
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database='advance_python')
         cursor = connection.cursor()
         sql = "select max(id) from subject"
         cursor.execute(sql)
@@ -19,8 +19,8 @@ class SubjectModel:
         return pk + 1
 
     def add(self, data):
-        # id = SubjectModel.next_pk(self)
-        id = data['id']
+        id = SubjectModel.next_pk(self)
+        # id = data['id']
         name = data['name']
         description = data['description']
         course_id = data['course_id']
@@ -30,7 +30,7 @@ class SubjectModel:
         if len(subject_exist) > 0:
             raise Exception("subject name already exist")
 
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database='advance_python')
         cursor = connection.cursor()
         sql = "insert into subject values(%s, %s, %s, %s)"
         data = (id, name, description, course_id)
@@ -44,7 +44,7 @@ class SubjectModel:
         name = data['name']
         description = data['description']
         course_id = data['course_id']
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db="advance_python")
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database="advance_python")
         cursor = connection.cursor()
         sql = "update subject set name = %s, description = %s, course_id = %s where id = %s"
         data = (name, description, course_id, id)
@@ -54,7 +54,7 @@ class SubjectModel:
         print("data updated successfully")
 
     def delete(self, id):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "delete from subject where id = %s"
         data = (id)
@@ -71,7 +71,7 @@ class SubjectModel:
         page_no = data.get('page_no', 0)
         page_size = data.get('page_size', 0)
 
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database='advance_python')
         cursor = connection.cursor()
         sql = "select * from subject where 1=1"
         if id != 0:
@@ -99,7 +99,7 @@ class SubjectModel:
         return list
 
     def get(self, id):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "select * from subject where id = %s"
         data = (id)
@@ -114,7 +114,7 @@ class SubjectModel:
         return list
 
     def find_by_name(self, name):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "select * from subject where name = %s"
         data = (name)

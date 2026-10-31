@@ -5,7 +5,7 @@ class CollegeModel:
 
     def next_pk(self):
         pk = 0
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database='advance_python')
         cursor = connection.cursor()
         sql = "select max(id) from marksheet"
         cursor.execute(sql)
@@ -33,7 +33,7 @@ class CollegeModel:
             raise Exception("college name already exist")
 
 
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database='advance_python')
         cursor = connection.cursor()
         sql = "insert into college values(%s, %s, %s, %s, %s, %s)"
         data = (id, name, address, state, city, phone_number)
@@ -49,7 +49,7 @@ class CollegeModel:
         state = data['state']
         city = data['city']
         phone_number = data['phone_number']
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db="advance_python")
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database="advance_python")
         cursor = connection.cursor()
         sql = "update college set name = %s, address = %s, state = %s,city = %s, phone_number = %s where id = %s"
         data = (name, address, state, city, phone_number, id)
@@ -59,7 +59,7 @@ class CollegeModel:
         print("college updated successfully")
 
     def delete(self, id):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "delete from college where id = %s"
         data = (id)
@@ -69,7 +69,7 @@ class CollegeModel:
         print("Data deleted successfully")
 
     def get(self, id):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "select * from college where id = %s"
         data = (id)
@@ -84,7 +84,7 @@ class CollegeModel:
         return list
 
     def find_by_name(self, name):
-        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", database="advance_python")
         cursor = connection.cursor()
         sql = "select * from college where name = %s"
         data = (name)
@@ -108,7 +108,7 @@ class CollegeModel:
         page_no = data.get('page_no', 0)
         page_size = data.get('page_size', 0)
 
-        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', db='advance_python')
+        connection = pymysql.connect(host='localhost', port=3306, user='root', password='root', database='advance_python')
         cursor = connection.cursor()
         sql = "select * from college where 1=1"
         if id != 0:

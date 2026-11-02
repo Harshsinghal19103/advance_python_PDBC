@@ -74,7 +74,21 @@ class CollegeModel:
         connection.close()
         print("Data Selected successfully")
 
-    def read(self, data):
+
+    def find_by_name(self, name):
+        connection = pymysql.Connection(host="localhost", port=3306, user="root", password="root", db="advance_python")
+        cursor = connection.cursor()
+        sql = "select * from college where name = %s"
+        data = (name)
+        cursor.execute(sql, data)
+        result = cursor.fetchall()
+        for data in result:
+            print(data[0], '\t', data[1], '\t', data[2], '\t', data[3], '\t', data[4], '\t', data[5])
+        connection.commit()
+        connection.close()
+        print("Data Selected successfully")
+
+    def search(self, data):
         id = data.get('id', 0)
         name = data.get('name', 0)
         address = data.get('address', '')

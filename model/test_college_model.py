@@ -40,6 +40,13 @@ def test_get():
         print(data['id'], '\t', data['name'], '\t', data['address'], '\t', data['state'], '\t', data['city'], '\t',
               data['phone_number'], )
 
+def test_find_by_name():
+    model = CollegeModel()
+    list = model.find_by_name()
+    for data in list:
+        print(data['id'], '\t', data['name'], '\t', data['address'], '\t', data['state'], '\t', data['city'], '\t',
+              data['phone_number'], )
+
 
 def test_search():
     data = {}

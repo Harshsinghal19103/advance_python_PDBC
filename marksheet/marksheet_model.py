@@ -99,6 +99,8 @@ class MarksheetModel:
             sql += " and name = '" + name + "'"
         if roll_no != 0:
             sql += " and roll_no = " + str(roll_no)
+        if roll_no != 0:
+            sql += " and roll_no = " + str(roll_no)
         if (page_size > 0):
             page_no = (page_no - 1) * page_size
             sql += " limit " + str(page_no) + ", " + str(page_size)

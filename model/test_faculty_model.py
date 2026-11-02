@@ -108,7 +108,7 @@ def test_get():
         do_print(data)
 
 
-test_get()
+# test_get()
 
 def test_find_by_email():
     faculty = FacultyModel()
@@ -124,18 +124,17 @@ def test_search():
     data['page_no'] = 1
     data['page_size'] = 0
     model = FacultyModel()
-    # model.search(data)
     list = model.search(data)
     for data in list:
-        # college_list = CollegeModel().get(data["college_id"])
-        # college_name = college_list[0].get('name')
-        #
-        # course_list = CourseModel().get(data["college_id"])
-        # course_name = course_list[0].get('name')
-        #
-        # subject_list = SubjectModel().get(data["college_id"])
-        # subject_name = subject_list[0].get('name')
-
         do_print(data)
+
+    # college_list = CollegeModel().get(data["college_id"])
+    # college_name = college_list[0].get('name')
+    #
+    # course_list = CourseModel().get(data["college_id"])
+    # course_name = course_list[0].get('name')
+    #
+    # subject_list = SubjectModel().get(data["college_id"])
+    # subject_name = subject_list[0].get('name')
 
 # test_search()

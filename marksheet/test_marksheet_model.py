@@ -3,7 +3,7 @@ from marksheet_model import MarksheetModel
 
 def test_add():
     data = {}
-    # data['id'] = 6
+    data['id'] = 6
     data['roll_no'] = 202
     data['name'] = 'prerna'
     data['physics'] = 76

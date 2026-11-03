@@ -43,7 +43,7 @@ def test_search():
     data['page_no'] = 1
     data['page_size'] = 0
     model = SubjectModel()
-    # model.search(data)
+    # models.search(data)
     list = model.search(data)
     for data in list:
         print(data['id'], '\t', data['name'], '\t', data['description'], '\t', data['course_id'], )

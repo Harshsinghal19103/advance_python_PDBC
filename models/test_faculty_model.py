@@ -1,9 +1,9 @@
 from faculty_model import FacultyModel
 import datetime
 
-from model.college_model import CollegeModel
-from model.course_model import CourseModel
-from model.subject_model import SubjectModel
+from models.college_model import CollegeModel
+from models.course_model import CourseModel
+from models.subject_model import SubjectModel
 
 
 def do_print(data):
